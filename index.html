@@ -66,6 +66,14 @@
 </script>
 
 <script type="text/x-handlebars" id="post">
+  {{#if isEditing}}
+    {{partial 'post/edit'}}
+    <!-- Note: 
+    Ember Action helper - sends events to your application controller or route handler when some kind of event happens in the UI -->
+    <button {{action 'doneEditing'}}>Done</button>
+  {{else}}
+    <button {{action 'edit'}}>Edit</button>
+  {{/if}}
 
   <h1>{{title}}</h1>
   <h2>by {{author.name}} 
@@ -82,6 +90,13 @@
     {{ body}}
   </div>
   </script>
+
+<!-- Partial Template -->
+<script type="text/x-handlebars" id="post/_edit">
+  <p>{{input type="text" value=title}}</p>
+  <p>{{input type="text" value=excerpt}}</p>
+  <p>{{textarea value=body}}</p>
+</script>
 
 
 

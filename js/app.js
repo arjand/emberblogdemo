@@ -17,6 +17,22 @@ App.PostsRoute = Ember.Route.extend({
 	}
 });
 
+/**
+ * Ember Controller: Stores application state and responds to events from your templates.
+**/
+App.PostController = Ember.ObjectController.extend({
+	isEditing: false,
+
+	
+	edit: function() {
+		this.set('isEditing', true);
+	},
+	doneEditing: function() {
+		this.set('isEditing', false);
+	}
+	
+});
+
 var posts = [{
   id: '1',
   title: "Rails is Omakase",
