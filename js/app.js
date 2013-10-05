@@ -44,9 +44,17 @@ App.PostController = Ember.ObjectController.extend({
 
 /**
   * Adds a handlebar helper to format the date using Moment.js
-  **/
+ **/
 Ember.Handlebars.helper('format-date', function(date) {
 	return moment(date).fromNow();
+});
+
+var showdownConverter = new Showdown.converter();
+/**
+  * Adds a handlebar helper to format the markdown text using showdown library
+ **/
+Ember.Handlebars.helper('format-markdown', function(input) {
+	return new Handlebars.SafeString(showdownConverter.makeHtml(input));
 });
 
 var posts = [{
