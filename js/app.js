@@ -17,12 +17,21 @@ App.PostsRoute = Ember.Route.extend({
 	}
 });
 
+/** A route for an individual post. This will allow a user to 
+  * directly visit #/posts/1
+ **/
+App.PostRoute = Ember.Route.extend({
+	model: function(params) {
+		// using ember's findBy method
+		return posts.findBy('id', params.post_id);
+	}
+});
+
 /**
  * Ember Controller: Stores application state and responds to events from your templates.
 **/
 App.PostController = Ember.ObjectController.extend({
 	isEditing: false,
-
 	
 	edit: function() {
 		this.set('isEditing', true);
