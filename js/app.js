@@ -42,6 +42,13 @@ App.PostController = Ember.ObjectController.extend({
 	
 });
 
+/**
+  * Adds a handlebar helper to format the date using Moment.js
+  **/
+Ember.Handlebars.helper('format-date', function(date) {
+	return moment(date).fromNow();
+});
+
 var posts = [{
   id: '1',
   title: "Rails is Omakase",
