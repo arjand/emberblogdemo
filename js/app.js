@@ -3,8 +3,10 @@ App = Ember.Application.create();
 App.Router.map(function () {
 	// add a route for index.html#about
 	this.resource('about');
-	this.resource('posts');
-	this.resource('post', { path: ':post_id' });
+	this.resource('posts', function() {
+		this.resource('post', { path: ':post_id' });	
+	});
+	
 });
 
 App.PostsRoute = Ember.Route.extend({
