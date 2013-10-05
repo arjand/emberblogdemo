@@ -23,14 +23,65 @@
       
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Posts</a></li>
-          <li><a href="#">About</a></li>
+          <li> {{#link-to 'posts'}}Posts{{/link-to}}</li>
+          <li>{{#link-to 'about'}}About{{/link-to}}</li>
           
         </ul>        
       </div><!-- /.navbar-collapse -->
     </nav>
 
+    <!-- this tells ember where to render templates -->
+    <div class="container">
+      {{outlet}}
+    </div>
 </script>
+
+<script type="text/x-handlebars" id="about">
+  <h1>About us</h1>
+</script>
+
+<script type="text/x-handlebars" id="posts">
+   
+      <div class="row">
+        <div class="col-xs-3">
+          <table class='table'>
+            <thead>
+              <tr><th>Recent Posts</th></tr>
+            </thead>
+            {{#each model}}
+            <tr><td>
+                {{#link-to 'post' this}}
+                  {{title}} 
+                  <small class='muted'>by {{author.name}}</small>
+                {{/link-to}}
+            </td></tr>
+            {{/each}}
+          </table>
+        </div>
+        <div class="col-xs-9">
+          {{outlet}}
+        </div>
+      </div>
+    
+</script>
+
+<script type="text/x-handlebars" id="post">
+
+  <h1>{{title}}</h1>
+  <h2>by {{author.name}} 
+    <small class='muted'>({{ date}})</small>
+  </h2>
+
+  <hr>
+
+  <div class='intro'>
+    {{ excerpt}}
+  </div>
+
+  <div class='below-the-fold'>
+    {{ body}}
+  </div>
+  </script>
 
 
 
